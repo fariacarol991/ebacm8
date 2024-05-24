@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contatos</h1>
+    <form id="contact-form">
+        <input type="text" id="name" placeholder="Nome" required>
+        <input type="tel" id="phone" placeholder="Telefone" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+    <table id="contacts-table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Linhas dos contatos serão adicionadas aqui -->
+        </tbody>
+    </table>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#contact-form').on('submit', function(event) {
+                event.preventDefault();
+                const name = $('#name').val();
+                const phone = $('#phone').val();
+                if (name && phone) {
+                    const newRow = `<tr><td>${name}</td><td>${phone}</td></tr>`;
+                    $('#contacts-table tbody').append(newRow);
+                    $('#name').val('');
+                    $('#phone').val('');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
